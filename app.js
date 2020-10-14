@@ -155,7 +155,7 @@ function createEngineer() {
         }
 
     ]).then(answers => {
-        const engineer = new engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerNumber);
+        const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerNumber);
         console.log(engineer);
         teamMembers.push(engineer);
         startingQuestion();
@@ -225,7 +225,7 @@ function createIntern() {
             }
         }
     ]).then(answers => {
-        const intern = new intern(answers.internName, answers.internID, answers.internEmail, answers.internNumber);
+        const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internNumber);
         console.log(intern);
         teamMembers.push(intern);
         startingQuestion();
