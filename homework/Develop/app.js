@@ -15,7 +15,9 @@ const { create } = require("domain");
 const teamMembers = [];
 const idArray = [];
 
-function team() {
+
+
+ 
 
     function createManager() {
         console.log("Let's go ahead and build your team!");
@@ -82,167 +84,203 @@ function team() {
             const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.officeNumber);
             console.log(manager);
             teamMembers.push(manager);
-            idArray.push(answers.managerID);
+            startingQuestion();
         });
 
-    
+ 
+    }
 
-        function createEngineer() {
-            console.log("Let's join the team!");
 
-            inquirer.prompt([
-                {
-                    type: "input",
-                    name: "engineerName",
-                    message: "Provide the name of the engineer?",
-                    validate: answer => {
-                        if (answer !== "") {
-                            return true;
-                        }
-                        return "Please enter a name.";
-                    }
-                },
-                {
-                    type: "input",
-                    name: "engineerID",
-                    message: "What's your engineer ID?",
-                    validate: answer => {
-                        const id = answer.match(
-                            /^[1-9]\d*$/
-                        );
-                        if (id) {
-                            return true;
-                        }
 
-                        return "Please enter a number greater than 0 to assign the Manager an ID";
-                    }
+function createEngineer() {
+    console.log("Let's join the team!");
 
-                },
-                {
-                    type: "input",
-                    name: "engineerEmail",
-                    message: "What's your engineer email?",
-                    validate: answer => {
-                        const email = answer.match(
-                            /\S+@\S+\.\S+/
-                        );
-                        if (email) {
-                            return true;
-                        }
-
-                        return "Please enter a valid email address";
-                    }
-
-                },
-                {
-                    type: "input",
-                    name: "engineerNumber",
-                    message: "What's the engineer's contact number?",
-                    validate: answer => {
-                        const engineerNum = answer.match(
-                            /^[1-9]\d*$/
-                        );
-                        if (engineerNum) {
-                            return true;
-                        }
-                        return "Please enter a valid number for the engineer";
-                    }
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "Provide the name of the engineer?",
+            validate: answer => {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Please enter a name.";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerID",
+            message: "What's your engineer ID?",
+            validate: answer => {
+                const id = answer.match(
+                    /^[1-9]\d*$/
+                );
+                if (id) {
+                    return true;
                 }
 
-            ]).then(answers => {
-                const engineer = new engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerNumber);
-                console.log(engineer);
-                teamMembers.push(engineer);
-                idArray.push(answers.engineerID);
-            });
+                return "Please enter a number greater than 0 to assign the Manager an ID";
+            }
 
-            function createIntern() {
-                console.log("Let's join the team!");
-    
-                inquirer.prompt([
-                    {
-                        type: "input",
-                        name: "internName",
-                        message: "Provide the name of the intern?",
-                        validate: answer => {
-                            if (answer !== "") {
-                                return true;
-                            }
-                            return "Please enter a name.";
-                        }
-                    },
-                    {
-                        type: "input",
-                        name: "internID",
-                        message: "What's your engineer ID?",
-                        validate: answer => {
-                            const id = answer.match(
-                                /^[1-9]\d*$/
-                            );
-                            if (id) {
-                                return true;
-                            }
-    
-                            return "Please enter a number greater than 0 to assign the Manager an ID";
-                        }
-    
-                    },
-                    {
-                        type: "input",
-                        name: "internEmail",
-                        message: "What's your intern email?",
-                        validate: answer => {
-                            const email = answer.match(
-                                /\S+@\S+\.\S+/
-                            );
-                            if (email) {
-                                return true;
-                            }
-    
-                            return "Please enter a valid email address";
-                        }
-    
-                    },
-                    {
-                        type: "input",
-                        name: "internNumber",
-                        message: "What's the engineer's contact number?",
-                        validate: answer => {
-                            const internNum = answer.match(
-                                /^[1-9]\d*$/
-                            );
-                            if (internNum) {
-                                return true;
-                            }
-                            return "Please enter a valid number for the intern";
-                        }
-                    }
-                ]).then(answers => {
-                    const intern = new intern(answers.internName, answers.internID, answers.internEmail, answers.internNumber);
-                    console.log(intern);
-                    teamMembers.push(intern);
-                    idArray.push(answers.internID);
-                });
-    
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What's your engineer email?",
+            validate: answer => {
+                const email = answer.match(
+                    /\S+@\S+\.\S+/
+                );
+                if (email) {
+                    return true;
+                }
 
+                return "Please enter a valid email address";
+            }
+
+        },
+        {
+            type: "input",
+            name: "engineerNumber",
+            message: "What's the engineer's contact number?",
+            validate: answer => {
+                const engineerNum = answer.match(
+                    /^[1-9]\d*$/
+                );
+                if (engineerNum) {
+                    return true;
+                }
+                return "Please enter a valid number for the engineer";
+            }
         }
 
+    ]).then(answers => {
+        const engineer = new engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerNumber);
+        console.log(engineer);
+        teamMembers.push(engineer);
+        startingQuestion();
+    });
+
+
+}
+function createIntern() {
+    console.log("Let's join the team!");
+
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "Provide the name of the intern?",
+            validate: answer => {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Please enter a name.";
+            }
+        },
+        {
+            type: "input",
+            name: "internID",
+            message: "What's your engineer ID?",
+            validate: answer => {
+                const id = answer.match(
+                    /^[1-9]\d*$/
+                );
+                if (id) {
+                    return true;
+                }
+
+                return "Please enter a number greater than 0 to assign the Manager an ID";
+            }
+
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What's your intern email?",
+            validate: answer => {
+                const email = answer.match(
+                    /\S+@\S+\.\S+/
+                );
+                if (email) {
+                    return true;
+                }
+
+                return "Please enter a valid email address";
+            }
+
+        },
+        {
+            type: "input",
+            name: "internNumber",
+            message: "What's the engineer's contact number?",
+            validate: answer => {
+                const internNum = answer.match(
+                    /^[1-9]\d*$/
+                );
+                if (internNum) {
+                    return true;
+                }
+                return "Please enter a valid number for the intern";
+            }
+        }
+    ]).then(answers => {
+        const intern = new intern(answers.internName, answers.internID, answers.internEmail, answers.internNumber);
+        console.log(intern);
+        teamMembers.push(intern);
+        startingQuestion();
+    });
+
+}
+
+
+
+
+
+
+
+function startingQuestion() {
+    return inquirer.prompt ([{
+        type: "list",
+        message: "Provide your employee role",
+        name: "role",
+        choices:["Manager", "Engineer", "Intern", "Finished"]
+
+}])
+
+.then(function (data) {
+    if (data.role === "Manager"){
+    createManager();
+    }   
+if (data.role === "Engineer"){
+    createEngineer();
     }
-}
+if (data.role === "Intern"){
+    createIntern();
+    }
+    if (data.role === "Finished"){
+    fs.writeFile("./rendered/rendered.html", render(teamMembers),  "utf8",function(err){console.log("Success!")});
+    }
+});    
+  
+
+}       
+
+
+startingQuestion();
 
 
 
 
-}
-
-createIntern();
-
-createEngineer();
-
-createManager();
 
 
-team();
+
+// const answers = render (employees);
+// fs.writeFile(".rendered/rendered.html", answers,'utf8',function(){
+// console.log("success")
+// });
+    
+
 
 
 
